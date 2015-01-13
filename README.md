@@ -23,3 +23,21 @@ This README file includes a code book that each variable and its values in the t
 | 4 tBodyAcc-std()-X     | Standard deviation of the time domain signal of the body acceleration in the X direction.    | Numeric                                                                         |
 | 5 tBodyAcc-std()-Y     | Standard deviation of the time domain signal of the body acceleration in the Y direction.    | Numeric                                                                         |
 | 6 tBodyAcc-std()-Z     | Standard deviation of the time domain signal of the body acceleration in the Z direction.    | Numeric                                                                         |
+# Manipulations performed to obtain tidy data
+1.	Read the files from a directory located in the working directory.
+2.	Loop through X_test, and extract the first 6 columns, which correspond to the mean and standard deviation of the data in the 3 dimensions (X, Y, and Z).
+3.	Loop through y_test , and create a vector of activities with the corresponding values from activity_labels.
+4.	Create a data.frame TESTDATA by column binding:
+
+       c(subject_test, vector of activities from step 3, data.frame from step 2) 
+5.	Name the columns in TESTDATA:
+
+        c("Subject","Activity", features[1:6])
+6.	Repeat step 2, but with X_train.
+7.	Repeat step 3, but with y_train.
+8.	Repeat step 4, but create a data.frame TRAINDATA by column binding
+
+        cbind(subject_train, vector of activities from step 6, data.frame from step 5)
+9.	Repeat step 5, except name the columns in TRAINDATA.
+10.	Put full set of data together by row binding TESTDATA with TRAINDATA.
+        rbind(TESTDATA, TRAINDATA)
